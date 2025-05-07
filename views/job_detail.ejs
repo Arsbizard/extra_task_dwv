@@ -1,0 +1,10 @@
+<!-- views/job_detail.ejs -->
+<h1><%= job.title %></h1>
+<h5 class="text-muted"><%= job.company %> — <%= job.location %></h5>
+<h3 class="mt-4"><%= t('detail_requirements') %>:</h3>
+<ul>
+  <% job.summary.forEach(item => { %>
+    <li><%= item %></li>
+  <% }) %>
+</ul>
+<p><a href="/jobs" class="btn btn-link"><%= t('back_to_jobs') %></a></p>

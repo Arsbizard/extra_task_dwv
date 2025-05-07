@@ -1,0 +1,52 @@
+<h1 class="mb-4"><%= t('dashboard') %></h1>
+
+<div class="row mb-3">
+  <div class="col-md-3">
+    <label>Location:</label>
+    <select id="dash-location" class="form-select">
+      <option value="">— All —</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label>Date from:</label>
+    <input id="dash-date-from" type="date" class="form-control">
+  </div>
+  <div class="col-md-3">
+    <label>Date to:</label>
+    <input id="dash-date-to"   type="date" class="form-control">
+  </div>
+  <div class="col-md-3 d-flex align-items-end">
+    <button id="dash-apply" class="btn btn-primary w-100">Apply Filters</button>
+  </div>
+</div>
+
+<ul class="nav nav-tabs mb-3" id="dashTabs" role="tablist">
+  <% ['Skills','Companies','Locations','Timeline'].forEach((tab,i)=>{ %>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link<%= i===0?' active':''%>"
+              id="<%=tab.toLowerCase()%>-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#<%=tab.toLowerCase()%>"
+              type="button">
+        <%= tab %>
+      </button>
+    </li>
+  <% }) %>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="skills">
+    <div id="skills-chart" class="card p-3 shadow-sm mb-4" style="height:350px;"></div>
+  </div>
+  <div class="tab-pane fade" id="companies">
+    <div id="companies-chart" class="card p-3 shadow-sm mb-4" style="height:350px;"></div>
+  </div>
+  <div class="tab-pane fade" id="locations">
+    <div id="locations-chart" class="card p-3 shadow-sm mb-4" style="height:350px;"></div>
+  </div>
+  <div class="tab-pane fade" id="timeline">
+    <div id="timeline-chart" class="card p-3 shadow-sm mb-4" style="height:350px;"></div>
+  </div>
+</div>
+
+<script src="/js/dashboard.js"></script>

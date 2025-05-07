@@ -1,0 +1,18 @@
+{
+    "lang_code": "en",
+    "home": "Home",
+    "jobs_list": "All Job Postings",
+    "dashboard": "Dashboard",
+    "not_found": "Job not found",
+    "welcome_msg": "This site automatically scrapes jobs and builds a dashboard.",
+    "jobs_page_heading": "List of all job postings",
+    "detail_requirements": "Requirements",
+    "back_to_jobs": "← Back to job list",
+    "home_heading": "Welcome to JobDashboard",
+    "home_subheading": "Automatically collected jobs and real-time insights at your fingertips.",
+    "total_jobs": "Total Jobs",
+    "new_last_day": "New Jobs (Last 24h)",
+    "companies_count": "Companies",
+    "locations_count": "Locations"
+  }
+  

@@ -1,0 +1,115 @@
+<% /* views/jobs.ejs */ %>
+
+<h1 class="mb-4"><%= t('jobs_list') %></h1>
+
+<div class="row mb-3">
+  <div class="col-md-5">
+    <input
+      id="job-search"
+      list="jobs-suggestions"
+      type="text"
+      class="form-control"
+      placeholder="🔍 Search by title or company…"
+    >
+    <datalist id="jobs-suggestions">
+      <% 
+        const suggestions = new Set();
+        jobs.forEach(j => {
+          if (j.title)   suggestions.add(j.title);
+          if (j.company) suggestions.add(j.company);
+        });
+        Array.from(suggestions).sort().forEach(item => { %>
+          <option value="<%= item %>">
+      <% }); %>
+    </datalist>
+  </div>
+  <div class="col-md-5">
+    <select id="location-filter" class="form-select">
+      <option value="">— All Locations —</option>
+      <% Array.from(new Set(jobs.map(j => j.location).filter(l => l)))
+           .sort()
+           .forEach(loc => { %>
+        <option value="<%= loc %>"><%= loc %></option>
+      <% }); %>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <button id="job-apply" class="btn btn-primary w-100">Apply</button>
+  </div>
+</div>
+
+<ul
+  id="jobs-list"
+  class="list-group mb-3"
+  style="max-height:600px; overflow-y:auto;"
+>
+  <% jobs.forEach(job => { %>
+    <li
+      class="list-group-item d-flex justify-content-between align-items-center"
+      data-title="<%= (job.title || '').toLowerCase() %>"
+      data-company="<%= (job.company || '').toLowerCase() %>"
+      data-location="<%= job.location || '' %>"
+    >
+      <div>
+        <strong><%= job.title || '—' %></strong><br>
+        <small class="text-muted">
+          <%= job.company || 'Unknown' %> — <%= job.location || 'Unknown' %>
+        </small>
+      </div>
+      <a href="/jobs/<%= job.id %>" class="btn btn-sm btn-outline-primary">→</a>
+    </li>
+  <% }); %>
+</ul>
+
+<div
+  id="jobs-empty"
+  class="alert alert-warning text-center"
+  style="display:none;"
+>
+  No job postings found.
+</div>
+
+<script>
+  // подавляем ошибки от content.bundle.js (расширения браузера)
+  window.addEventListener('error', function(e) {
+    if (e.filename && e.filename.includes('content.bundle.js')) {
+      e.stopImmediatePropagation();
+      return false;
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('job-search');
+    const locF  = document.getElementById('location-filter');
+    const apply = document.getElementById('job-apply');
+    const items = Array.from(document.querySelectorAll('#jobs-list li'));
+    const empty = document.getElementById('jobs-empty');
+
+    function filterJobs() {
+      const q   = (input.value || '').trim().toLowerCase();
+      const loc = locF.value;
+      let shown = 0;
+
+      items.forEach(li => {
+        const title    = li.getAttribute('data-title')   || '';
+        const company  = li.getAttribute('data-company') || '';
+        const location = li.getAttribute('data-location')|| '';
+        const okText = title.includes(q) || company.includes(q);
+        const okLoc  = !loc || location === loc;
+        if (okText && okLoc) {
+          li.style.display = '';
+          shown++;
+        } else {
+          li.style.display = 'none';
+        }
+      });
+
+      empty.style.display = shown ? 'none' : '';
+    }
+
+    // вешаем обработчики
+    input.addEventListener('input',  filterJobs);
+    locF .addEventListener('change', filterJobs);
+    apply.addEventListener('click',  filterJobs);
+  });
+</script>

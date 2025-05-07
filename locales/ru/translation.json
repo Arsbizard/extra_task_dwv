@@ -1,0 +1,17 @@
+{
+    "lang_code": "ru",
+    "home": "Главная",
+    "jobs_list": "Список вакансий",
+    "dashboard": "Дашборд",
+    "not_found": "Вакансия не найдена",
+    "welcome_msg": "Этот сайт автоматически собирает вакансии и строит дашборд.",
+    "jobs_page_heading": "Список всех вакансий",
+    "detail_requirements": "Требования",
+    "back_to_jobs": "← Вернуться к списку",
+    "home_heading": "Добро пожаловать на JobDashboard",
+    "home_subheading": "Автоматически собранные вакансии и аналитика в реальном времени.",
+    "total_jobs": "Всего вакансий",
+    "new_last_day": "Новых за сутки",
+    "companies_count": "Компаний",
+    "locations_count": "Локаций"
+}

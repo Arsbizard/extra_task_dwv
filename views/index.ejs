@@ -1,0 +1,42 @@
+<% /* views/index.ejs */ %>
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+  <div class="container-fluid py-5 text-center">
+    <h1 class="display-4 fw-bold"><%= t('home_heading') %></h1>
+    <p class="fs-5 text-muted"><%= t('home_subheading') %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-lg-3 mb-4">
+    <div class="card text-white bg-primary h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title"><%= t('total_jobs') %></h5>
+        <p class="card-text display-4"><%= stats.totalJobs %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-3 mb-4">
+    <div class="card text-white bg-success h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title"><%= t('new_last_day') %></h5>
+        <p class="card-text display-4"><%= stats.newJobsLastDay %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-3 mb-4">
+    <div class="card text-white bg-warning h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title"><%= t('companies_count') %></h5>
+        <p class="card-text display-4"><%= stats.uniqueCompanies %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-3 mb-4">
+    <div class="card text-white bg-danger h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title"><%= t('locations_count') %></h5>
+        <p class="card-text display-4"><%= stats.uniqueLocations %></p>
+      </div>
+    </div>
+  </div>
+</div>
